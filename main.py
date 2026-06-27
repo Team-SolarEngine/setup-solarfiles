@@ -1,4 +1,4 @@
-import src.setofquestions as soq
+import src.setOfQuestions as soq
 import time
 
 try:
