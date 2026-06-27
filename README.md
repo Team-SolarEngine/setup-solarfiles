@@ -2,11 +2,11 @@
 This repository is mainly used for setting up your `.solar-file` for your Solar Engine mod/script. We have two different version that is being worked on!
 
 ## Python Version (CLI)
-**Link**: https://github.com/Team-SolarEngine/Solar-Website/tree/python <br/>
+**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/python <br/>
 **Maintained by**: [Daveberry Cricket Blueson](https://codedave.pages.dev/)
 
 ## Haxe Version (GUI)
-**Link**: https://github.com/Team-SolarEngine/Solar-Website/tree/haxe <br/>
+**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/haxe <br/>
 **Maintained by**: [VideoBot](https://video-bot.netlify.app/)
 
 ---
