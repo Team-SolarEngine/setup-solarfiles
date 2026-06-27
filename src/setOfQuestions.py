@@ -16,8 +16,8 @@ def doesItExist(aString):
         return "None inputted."
 
 def main():
-    pathToLogo = q.getInput("Path to mod/script logo [FULL PATH]", True)
-    pathToBanner = q.getInput("Path to mod/script banner [FULL PATH]", True)
+    pathToLogo = q.getInput("Path to mod/script logo [FULL PATH. ADD / AT THE END]", True)
+    pathToBanner = q.getInput("Path to mod/script banner [FULL PATH. ADD / AT THE END]", True)
     isOpenSource = q.getBoolean("Is it open source?")
     canMessWithComputer = q.getBoolean("Can it mess with your computer?")
     title = q.getInput("Input the title of your mod/script", True)
