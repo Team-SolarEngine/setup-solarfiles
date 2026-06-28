@@ -20,7 +20,6 @@ jobs:
             - name: Install Libraries
               run: |
                 haxelib setup C:/haxelib
-                haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp
                 haxelib install lime
                 haxelib install openfl
                 haxelib --never install flixel
