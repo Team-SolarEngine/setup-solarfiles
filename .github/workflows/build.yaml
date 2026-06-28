@@ -39,8 +39,11 @@ jobs:
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
 
+      - name: Delete `d` file
+        run: rm target/${{ matrix.target }}/release/setup-solarfiles.d
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: litv-${{ matrix.os-name }}
-          path: target/${{ matrix.target }}/release/litv*
+          path: target/${{ matrix.target }}/release/setup-solarfiles*
