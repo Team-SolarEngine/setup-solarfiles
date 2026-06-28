@@ -38,5 +38,15 @@ fn main() {
         external_url,
         github_url,
         made_by_url,
-    )
+    );
+
+    let path_to_export = question_prompt::get_input("Where should we export it?", &true);
+    let continue_question = question_prompt::get_boolean("Do you wish to continue?");
+
+    if continue_question == "yes" {
+        print!("continue function here");
+    } else {
+        print!("Exiting...");
+        std::process::exit(0);
+    }
 }

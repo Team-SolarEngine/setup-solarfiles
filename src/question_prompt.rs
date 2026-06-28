@@ -10,7 +10,7 @@ pub fn get_input(text: &str, is_required: &bool) -> String {
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
 
-    if input.trim().is_empty() && is_required.clone() {
+    if input.trim().is_empty() && *is_required {
         println!("\nNo input was given. Exiting app...");
         thread::sleep(Duration::from_secs(2));
                 
@@ -34,12 +34,13 @@ pub fn get_boolean(text: &str) -> String {
         std::process::exit(0);
     }
 
-    let mut returned_output:String = "".to_string();
     if input.trim() == "y" || input.trim() == "Y" {
-        returned_output = "yes".to_string()
+        "yes".to_string()
     } else if input.trim() == "n" || input.trim() == "N" {
-        returned_output = "no".to_string()
+        "no".to_string()
+    } else {
+        println!("\nNot a real option. Exiting app...");
+        thread::sleep(Duration::from_secs(1));
+        std::process::exit(0);
     }
-
-    returned_output
 }
