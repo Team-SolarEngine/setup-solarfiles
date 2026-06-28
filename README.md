@@ -1,8 +1,8 @@
 # Setup Solar Files
 This repository is mainly used for setting up your `.solar-file` for your Solar Engine mod/script. We have two different version that is being worked on!
 
-## Python Version (CLI)
-**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/python <br/>
+## Rust Version (CLI)
+**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/rust <br/>
 **Maintained by**: [Daveberry Cricket Blueson](https://codedave.pages.dev/)
 
 ## Haxe Version (GUI)
