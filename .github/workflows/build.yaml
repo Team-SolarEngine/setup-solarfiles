@@ -1,4 +1,4 @@
-name: Build
+name: Build Setup SolarFiles
 
 on:
   push:
@@ -45,5 +45,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: litv-${{ matrix.os-name }}
+          name: setup-solarfiles-${{ matrix.os-name }}
           path: target/${{ matrix.target }}/release/setup-solarfiles*
