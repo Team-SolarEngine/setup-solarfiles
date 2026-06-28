@@ -1,2 +1,6 @@
 # Setup Solar Files (PYTHON)
 This repository is mainly used for setting up your `.solar-file` for your Solar Engine mod/script. We have two different version that is being worked on!
+
+<!--
+test #1 -- 28/06/2026 13:01
+-->
