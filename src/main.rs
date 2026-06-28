@@ -1,4 +1,5 @@
 mod question_prompt;
+mod initialize_everything;
 
 fn main() {
     let path_to_logo = question_prompt::get_input("Path to mod/script logo [FULL PATH. ADD / AT THE END]", &true);
@@ -44,7 +45,20 @@ fn main() {
     let continue_question = question_prompt::get_boolean("Do you wish to continue?");
 
     if continue_question == "yes" {
-        print!("continue function here");
+        initialize_everything::init_yes(
+            &path_to_logo,
+            &path_to_banner,
+            &is_open_source,
+            &can_mess_with_computer,
+            &title,
+            &description,
+            &made_by,
+            &download_url,
+            &external_url,
+            &github_url,
+            &made_by_url,
+            &path_to_export,
+        );
     } else {
         print!("Exiting...");
         std::process::exit(0);
