@@ -4,7 +4,7 @@ use std::time::Duration;
 use std::thread;
 
 pub fn get_input(text: &str, is_required: &bool) -> String {
-    print!("{}*\n--> ", text);
+    if *is_required { print!("{} {}{}\n{} ", "╭─".black(), text.bright_white(), "*".red(), "╰─".black()); } else { print!("{} {}\n{} ", "╭─".black(), text.bright_white(), "╰─".black()); }
     io::stdout().flush().unwrap();
 
     let mut input = String::new();
@@ -22,7 +22,7 @@ pub fn get_input(text: &str, is_required: &bool) -> String {
 }
 
 pub fn get_boolean(text: &str) -> String {
-    print!("{} [y/n]\n--> ", text);
+    print!("{} {} {}\n{} ", "╭─".black(), text.bright_white(), "[y/n]".black(), "╰─".black());
     io::stdout().flush().unwrap();
 
     let mut input = String::new();

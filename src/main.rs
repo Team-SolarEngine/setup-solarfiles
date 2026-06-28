@@ -14,7 +14,7 @@ fn main() {
     let github_url = question_prompt::get_input("Input the Github URL", &false);
     let made_by_url = question_prompt::get_input("Input the person/team who made the script/mod URL", &false);
 
-    print!("/=/= Final results =\\=\\
+    println!("/=/= Final results =\\=\\
 -> Logo Path: {}
 -> Banner Path: {}
 -> Readme: Create this yourself later in a text editor!

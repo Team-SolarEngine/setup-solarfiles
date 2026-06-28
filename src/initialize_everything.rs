@@ -2,7 +2,6 @@ use super::question_prompt;
 use std::fs;
 use std::path::Path;
 use colored::Colorize;
-use std::io;
 
 const CONTENT_README: &str = "# A mod about {title}";
 const CONTENT_JSON_CONFIG: &str = r#"{
@@ -66,7 +65,7 @@ pub fn init_yes(
     create_file(&format!("{}/config.json", formatted_string), &populated_json);
 
     // === === === logo.png // banner.png === === ===
-    let logo_formatted_path = &format!("{}/banner.png", formatted_string);
+    let logo_formatted_path = &format!("{}/logo.png", formatted_string);
     fs::copy(path_to_logo, logo_formatted_path).unwrap();
     println!("{} {}", "Created".green(), logo_formatted_path.to_string().white());
 
