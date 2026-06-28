@@ -1,0 +1,45 @@
+use colored::Colorize;
+use std::io::{self, Write};
+use std::time::Duration;
+use std::thread;
+
+pub fn get_input(text: &str, is_required: &bool) -> String {
+    print!("{}\n-->", text);
+    io::stdout().flush().unwrap();
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+
+    if input.trim().is_empty() && is_required.clone() {
+        println!("\nNo input was given. Exiting app...");
+        thread::sleep(Duration::from_secs(2));
+                
+        println!("Exiting app.");
+        std::process::exit(0);
+    }
+
+    input.trim().to_string()
+}
+
+pub fn get_boolean(text: &str) -> String {
+    print!("{} [y/n]\n-->", text);
+    io::stdout().flush().unwrap();
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+
+    if input.trim().is_empty() {
+        println!("\nNo input was given. Exiting app...");
+        thread::sleep(Duration::from_secs(1));
+        std::process::exit(0);
+    }
+
+    let mut returned_output:String = "".to_string();
+    if input.trim() == "y" || input.trim() == "Y" {
+        returned_output = "yes".to_string()
+    } else if input.trim() == "n" || input.trim() == "N" {
+        returned_output = "no".to_string()
+    }
+
+    returned_output
+}
