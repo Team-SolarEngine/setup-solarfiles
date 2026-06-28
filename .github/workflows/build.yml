@@ -14,11 +14,11 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: krdlab/setup-haxe@master
-            with:
+              with:
                 haxe-version: 4.3.7
             
-            name: Install Libraries
-            run: |
+            - name: Install Libraries
+              run: |
                 haxelib setup C:/haxelib
                 haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp
                 haxelib install lime
@@ -33,13 +33,15 @@ jobs:
                 haxelib install haxeui-flixel
               shell: cmd
 
-            name: Create Version Tag
-            run: echo "${{github.run_id}}" > VERSION
-            name: Compile
-            run: haxelib run lime build windows --app-version="4.0.0-${{ github.run_id}}"
-            name: Publish Artifact
-            uses: actions/upload-artifact@v2.2.4
-            with:
-              name: windowsBuild
-              path: export/release/windows/bin
+            - name: Create Version Tag
+              run: echo "${{github.run_id}}" > VERSION
+
+            - name: Compile
+              run: haxelib run lime build windows --app-version="4.0.0-${{ github.run_id}}"
+
+            - name: Publish Artifact
+              uses: actions/upload-artifact@v2.2.4
+              with:
+                name: windowsBuild
+                path: export/release/windows/bin
 
