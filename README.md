@@ -4,9 +4,9 @@ This repository is mainly used for setting up your `.solar-file` for your Solar 
 This version offers the CLI, hovering under below <200 kb with the help of [Cargo's features](Cargo.toml).
 
 ## Why pick this over the [GUI](https://github.com/Team-SolarEngine/setup-solarfiles/tree/haxe)?
-It's lighter, and way faster for something simple. I mean, GUI over CLI is kinda obvious because of the absurd file size.
+It's lighter, and way faster for something simple. I mean, CLI over GUI is kinda obvious because of the absurd file size.
 
-Also, because the CLI tool has more platforms to use other than *windows only*
+Also, because the CLI tool has more platforms to use rather than *windows only*
 
 ## Where to download?
 - Linux X86_64; [setup-solarfiles-Linux](https://nightly.link/Team-SolarEngine/setup-solarfiles/workflows/build.yaml/rust/setup-solarfiles-Linux.zip)
