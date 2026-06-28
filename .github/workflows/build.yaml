@@ -47,10 +47,10 @@ jobs:
             run: python3 -m venv venv
           
           - name: Install Python dependencies
-            run: ${{ pathWays }}pip install -r requirements.txt
+            run: ${{ matrix.pathWays }}pip install -r requirements.txt
           
           - name: Compile with PyInstaller
-            run: ${{ pathWays }}pyinstaller --onefile --name Setup-SolarFiles main.py
+            run: ${{ matrix.pathWays }}pyinstaller --onefile --name Setup-SolarFiles main.py
 
           - name: Rename Build (Windows)
             if: runner.os == 'Windows'
