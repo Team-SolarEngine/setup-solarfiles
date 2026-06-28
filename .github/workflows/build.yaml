@@ -44,7 +44,7 @@ jobs:
             run: pip install -r requirements.txt
           
           - name: Compile with PyInstaller
-            run: pyinstaller --onefile --name Setup-SolarFiles
+            run: pyinstaller --onefile --name Setup-SolarFiles main.py
 
           - name: Rename Build (Windows)
             if: runner.os == 'Windows'
