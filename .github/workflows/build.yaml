@@ -23,14 +23,17 @@ jobs:
                   os-name: Linux Ubuntu
                   artifact-path: dist/Setup-SolarFiles-Linux
                   artifact-name: Setup-SolarFiles-Linux
+                  pathWays: venv/bin/
                 - os: windows-latest
                   os-name: Windows
                   artifact-path: dist/Setup-SolarFiles-Windows.exe
                   artifact-name: Setup-SolarFiles-Windows
+                  pathWays: venv\Scripts\
                 - os: macos-latest
                   os-name: macOS
                   artifact-path: dist/Setup-SolarFiles-macOS
                   artifact-name: Setup-SolarFiles-macOS
+                  pathWays: venv/bin/
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
@@ -39,12 +42,15 @@ jobs:
             uses: actions/setup-python@v4
             with:
               python-version: ${{ env.pythonVersion }}
+
+          - name: Create Virtual Environment (storage reason)
+            run: python3 -m venv venv
           
           - name: Install Python dependencies
-            run: pip install -r requirements.txt
+            run: ${{ pathWays }}pip install -r requirements.txt
           
           - name: Compile with PyInstaller
-            run: pyinstaller --onefile --name Setup-SolarFiles main.py
+            run: ${{ pathWays }}pyinstaller --onefile --name Setup-SolarFiles main.py
 
           - name: Rename Build (Windows)
             if: runner.os == 'Windows'
