@@ -1,0 +1,45 @@
+name: Build Haxe Solar Files
+
+on:
+  push:
+    branches: ['haxe']
+  pull_request:
+    branches: ['haxe']
+  workflow_dispatch:
+
+jobs:
+    buildWindows:
+        runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - uses: krdlab/setup-haxe@master
+            with:
+                haxe-version: 4.3.7
+            
+            name: Install Libraries
+            run: |
+                haxelib setup C:/haxelib
+                haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp
+                haxelib install lime
+                haxelib install openfl
+                haxelib --never install flixel
+                haxelib run lime setup flixel
+                haxelib run lime setup
+                haxelib install flixel-tools
+                haxelib install flixel-ui
+                haxelib install flixel-addons
+                haxelib install haxeui-core
+                haxelib install haxeui-flixel
+              shell: cmd
+
+            name: Create Version Tag
+            run: echo "${{github.run_id}}" > VERSION
+            name: Compile
+            run: haxelib run lime build windows --app-version="4.0.0-${{ github.run_id}}"
+            name: Publish Artifact
+            uses: actions/upload-artifact@v2.2.4
+            with:
+              name: windowsBuild
+              path: export/release/windows/bin
+

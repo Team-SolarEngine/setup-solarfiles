@@ -1,14 +1,4 @@
-# Setup Solar Files
-This repository is mainly used for setting up your `.solar-file` for your Solar Engine mod/script. We have two different version that is being worked on!
+# Setup Solar Files (Haxe)
 
-## Rust Version (CLI)
-**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/rust <br/>
-**Maintained by**: [Daveberry Cricket Blueson](https://codedave.pages.dev/)
-
-## Haxe Version (GUI)
-**Link**: https://github.com/Team-SolarEngine/setup-solarfiles/tree/haxe <br/>
-**Maintained by**: [VideoBot](https://video-bot.netlify.app/)
-
----
-
-Both works fine for your needs. Whatever you pick is the same functionality.
+This is the Haxe version of the program.<br>
+Instead of being CLI like the Rust version, this version offers a GUI.<br>

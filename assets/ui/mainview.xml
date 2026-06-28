@@ -1,0 +1,57 @@
+<vbox style="padding: 5px;">
+    <style>
+        body{
+            font-size: 12px;
+        }
+
+        .button, .textfield, .textarea, .label{
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            font-size: 12px;
+        }
+
+        .textfield{
+            width: 200;
+        }
+    </style>
+
+    <button text="Banner" id="banner" />
+    <button text="Icon" id="iconbtn" />
+    <hbox>
+        <grid>
+            <label text="Title:" verticalAlign="center" />
+            <textfield placeholder="idk" id="txtTitle" validator="required" />
+            <label text="Description" verticalAlign="start" />
+            <textarea width="250" height="90" placeholder="Description" id="txtDescription"
+                validator="required" />
+            <label text="Made by:" verticalAlign="center" />
+            <textfield placeholder="Some dev" id="txtMadeBy" validator="required" />
+            <label text="Github URL:" />
+            <textfield placeholder="https://github.com/SomeUser/repo" id="githubUrl"/>
+            <label text="External URL:" />
+            <textfield placeholder="https://website.dev" id="externalUrl"/>
+            <label text="Madeby URL:" />
+            <textfield placeholder="https://dev.dev" id="madeUrl"/>
+            <label text="Download URL:" />
+            <textfield placeholder="https://download.url" id="downloadUrl" validator="required"/>
+
+            <label text="Is opensource:" />
+            <list-item-picker width="150" validator="required" id="isOpenSourceSelect">
+                <data>
+                    <item text="Yes" />
+                    <item text="No" />
+                </data>
+            </list-item-picker>
+
+            <label text="Messes with computer:"/>
+            <list-item-picker width="150" validator="required" id="messesWithPC">
+                <data>
+                    <item text="Yes" />
+                    <item text="No" />
+                </data>
+            </list-item-picker>
+        </grid>
+    </hbox>
+    <button text="Create Folder" id="finish"/>
+</vbox>
