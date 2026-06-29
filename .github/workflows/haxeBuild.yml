@@ -79,7 +79,7 @@ jobs:
                 name: linuxBuild
                 path: export/linux/
 
-    buildMacIntel:
+    buildMac:
         runs-on: macos-latest
 
         steps:
