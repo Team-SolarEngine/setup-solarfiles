@@ -56,6 +56,11 @@ jobs:
             - name: Publish Artifact
               uses: actions/upload-artifact@v4
               with:
+<<<<<<< HEAD:.github/workflows/haxeBuild.yml
                 name: Solar Submit ${{matrix.os-name}}
                 path: export/${{matrix.target}}/
+=======
+                name: windowsBuild
+                path: export/windows/bin
+>>>>>>> a71d4013514dbc75c2d9cb9f91136e9ce66b7d86:.github/workflows/build.yml
 
