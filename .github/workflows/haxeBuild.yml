@@ -8,8 +8,24 @@ on:
   workflow_dispatch:
 
 jobs:
-    buildWindows:
-        runs-on: windows-latest
+    build:
+      name: ${{matrix.os-name}} Build
+      strategy:
+          fail-fast: false
+          matrix:
+            include:
+              - os: ubuntu-latest
+                os-name: Linux
+                target: x86_64-unknown-linux-gnu
+              - os: windows-latest
+                os-name: Windows
+                target: x86_64-pc-windows-msvc
+              - os: macos-latest
+                os-name: macOS-Intel
+                target: x86_64-apple-darwin
+              - os: macos-latest
+                os-name: macOS-Arm64
+                target: aarch64-apple-darwin
 
         steps:
             - uses: actions/checkout@v4
@@ -19,7 +35,6 @@ jobs:
             
             - name: Install Libraries
               run: |
-                haxelib setup C:/haxelib
                 haxelib install lime
                 haxelib install openfl
                 haxelib --never install flixel
@@ -36,11 +51,11 @@ jobs:
               run: echo "${{github.run_id}}" > VERSION
 
             - name: Compile
-              run: haxelib run lime build windows --app-version="4.0.0-${{ github.run_id}}"
+              run: haxelib run lime build ${{matrix.target}} --app-version="4.0.0-${{ github.run_id}}"
 
             - name: Publish Artifact
               uses: actions/upload-artifact@v4
               with:
-                name: windowsBuild
-                path: export/release/windows/
+                name: Solar Submit ${{matrix.os-name}}
+                path: export/${{matrix.target}}/
 
