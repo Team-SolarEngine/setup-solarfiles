@@ -66,7 +66,6 @@ jobs:
                 haxelib install flixel-addons
                 haxelib install haxeui-core
                 haxelib install haxeui-flixel
-              shell: cmd
 
             - name: Create Version Tag
               run: echo "${{github.run_id}}" > VERSION
@@ -102,7 +101,6 @@ jobs:
                 haxelib install flixel-addons
                 haxelib install haxeui-core
                 haxelib install haxeui-flixel
-              shell: cmd
 
             - name: Create Version Tag
               run: echo "${{github.run_id}}" > VERSION
