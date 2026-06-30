@@ -15,7 +15,7 @@ dependencies = [
 [[package]]
 name = "dvs-interactive-cli-rs"
 version = "0.1.0"
-source = "git+https://codeberg.org/dvs/dv-interactive-cli-rs.git?branch=main#5a4fde7aaa856391ac7a83bd8d60212828934f34"
+source = "git+https://codeberg.org/dvs/dvs-interactive-cli-rs.git?branch=main#5a4fde7aaa856391ac7a83bd8d60212828934f34"
 dependencies = [
  "colored",
 ]

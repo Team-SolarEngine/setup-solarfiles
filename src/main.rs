@@ -3,8 +3,8 @@ use dvs_interactive_cli_rs::boolean;
 use dvs_interactive_cli_rs::input;
 
 fn main() {
-    let path_to_logo = input("Path to mod/script logo", &true, "FULL PATH. ADD / AT THE END");
-    let path_to_banner = input("Path to mod/script banner", &true, "FULL PATH. ADD / AT THE END");
+    let path_to_logo = input("Path to mod/script logo", &true, "FULL PATH.");
+    let path_to_banner = input("Path to mod/script banner", &true, "FULL PATH.");
     let is_open_source = boolean("Is it open source?");
     let can_mess_with_computer = boolean("Can it mess with your computer?");
     let title = input("Input the title of your mod/script", &true, "Your epic cool mod");
@@ -45,7 +45,7 @@ fn main() {
     let path_to_export = input("Where should we export it?", &true, "FULL PATH. ADD / AT THE END");
     let continue_question = boolean("Do you wish to continue?");
 
-    if continue_question == "yes" {
+    if continue_question == "y" || continue_question == "Y" {
         initialize_everything::init_yes(
             &path_to_logo,
             &path_to_banner,
