@@ -1,4 +1,4 @@
-use super::question_prompt;
+use dvs_interactive_cli_rs::boolean;
 use std::fs;
 use std::path::Path;
 use colored::Colorize;
@@ -38,7 +38,7 @@ pub fn init_yes(
     let extended_path = Path::new(&formatted_string);
     
     if extended_path.exists() {
-        let path_exists_prompt = question_prompt::get_boolean(&format!("`{}` {}", path_to_export.bright_black(), "path exists. Do you wish to delete it?".yellow()));
+        let path_exists_prompt = boolean(&format!("`{}` {}", path_to_export.bright_black(), "path exists. Do you wish to delete it?".yellow()));
 
         if path_exists_prompt == "yes" {
             fs::remove_dir_all(extended_path).unwrap();

@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 colored = "2"
+dvs-interactive-cli-rs = { git = "https://codeberg.org/dvs/dv-interactive-cli-rs.git", branch = "main" }
 
 [profile.release]
 opt-level = "z"

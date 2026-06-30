@@ -13,6 +13,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "dvs-interactive-cli-rs"
+version = "0.1.0"
+source = "git+https://codeberg.org/dvs/dv-interactive-cli-rs.git?branch=main#5a4fde7aaa856391ac7a83bd8d60212828934f34"
+dependencies = [
+ "colored",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -23,6 +31,7 @@ name = "setup-solarfiles"
 version = "0.1.0"
 dependencies = [
  "colored",
+ "dvs-interactive-cli-rs",
 ]
 
 [[package]]
