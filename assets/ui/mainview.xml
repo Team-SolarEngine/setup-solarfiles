@@ -53,5 +53,8 @@
             </list-item-picker>
         </grid>
     </hbox>
-    <button text="Create Folder" id="finish"/>
+    <hbox>
+        <button text="Save" id="finish"/>
+        <button text="Clear" id="clearbtn"/>
+    </hbox>
 </vbox>

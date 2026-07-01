@@ -7,6 +7,8 @@ import haxe.ui.containers.dialogs.MessageBox.MessageBoxType;
 import sys.FileSystem;
 import sys.io.File;
 import haxe.Json;
+import haxe.ui.ToolkitAssets;
+import haxe.ui.containers.dialogs.Dialog.DialogButton;
 
 using StringTools;
 
@@ -23,20 +25,29 @@ typedef Data = {
 }
 
 @:build(haxe.ui.ComponentBuilder.build("assets/ui/mainview.xml"))
-class MainUI extends VBox{
-    var bannerBytes:Bytes = null;
-    var iconBytes:Bytes = null;
+class MainUI extends VBox {
+	var bannerBytes:Bytes = null;
+	var iconBytes:Bytes = null;
 
 	var options:Array<String> = ["yes", "no"];
 
-    public function new(){
-        super();
+	public function new() {
+		super();
 		banner.onClick = function(event) {
 			Dialogs.openBinaryFile("Open Banner", [{label: "Banner File (.png)", extension: "png"}], function(selectedFile) {
 				if (selectedFile != null && selectedFile.bytes != null) {
 					trace("Selected file: " + selectedFile.name);
-                    bannerBytes = selectedFile.bytes;
+					bannerBytes = selectedFile.bytes;
 					banner.text = "Banner Success!";
+
+					ToolkitAssets.instance.imageFromBytes(bannerBytes, function(imageInfo) {
+						if (imageInfo != null) {
+							try {
+								PreviewUI.instance.bannerPreview.resource = imageInfo.data;
+								PreviewUI.instance.bannerLabel.show();
+							} catch (_) {}
+						}
+					});
 				}
 			});
 		}
@@ -45,36 +56,51 @@ class MainUI extends VBox{
 			Dialogs.openBinaryFile("Open Icon", [{label: "Icon File (.png)", extension: "png"}], function(selectedFile) {
 				if (selectedFile != null && selectedFile.bytes != null) {
 					trace("Selected file: " + selectedFile.name);
-                    iconBytes = selectedFile.bytes;
+					iconBytes = selectedFile.bytes;
 					iconbtn.text = "Icon Success!";
+
+					ToolkitAssets.instance.imageFromBytes(iconBytes, function(imageInfo) {
+						if (imageInfo != null) {
+							try {
+								PreviewUI.instance.iconPreview.resource = imageInfo.data;
+								PreviewUI.instance.iconLabel.show();
+							} catch (_) {}
+						}
+					});
 				}
 			});
 		}
 
-		finish.onClick = function(event){
+		clearbtn.onClick = function(event){
+			Dialogs.messageBox("Are you sure?", "QUESTION", MessageBoxType.TYPE_YESNO, function(callback){
+				(callback == DialogButton.YES) ? clearInfo() : return;
+			});
+		}
+
+		finish.onClick = function(event) {
 			FileSystem.createDirectory(".solar-engine");
 
-			if (bannerBytes == null){
+			if (bannerBytes == null) {
 				Dialogs.messageBox("Missing Banner file!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-			if (iconBytes == null){
+			if (iconBytes == null) {
 				Dialogs.messageBox("Missing Icon file!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-			if (txtTitle.text == null || txtTitle.text == ""){
+			if (txtTitle.text == null || txtTitle.text == "") {
 				Dialogs.messageBox("No Title!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-			if (txtDescription.text == null || txtDescription.text == ""){
+			if (txtDescription.text == null || txtDescription.text == "") {
 				Dialogs.messageBox("No Description!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-			if (txtMadeBy.text == null || txtMadeBy.text == ""){
+			if (txtMadeBy.text == null || txtMadeBy.text == "") {
 				Dialogs.messageBox("Missing Developer Info!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-			if (downloadUrl.text == null || downloadUrl.text == ""){
+			if (downloadUrl.text == null || downloadUrl.text == "") {
 				Dialogs.messageBox("Missing Download URL!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
@@ -89,7 +115,7 @@ class MainUI extends VBox{
 			data.githubURL = githubUrl.text;
 			data.madeByURL = madeUrl.text;
 			data.downloadURL = downloadUrl.text;
-			
+
 			File.saveContent("./.solar-engine/config.json", Json.stringify(data));
 			File.saveContent("./.solar-engine/readme.md", "Has to be filled in.");
 
@@ -97,10 +123,12 @@ class MainUI extends VBox{
 			File.saveBytes("./.solar-engine/icon.png", iconBytes);
 
 			Dialogs.messageBox("Info Saved!", "SUCCESS", MessageBoxType.TYPE_INFO);
-        }
-    }
 
-	function defaultData():Data{
+			clearInfo();
+		}
+	}
+
+	function defaultData():Data {
 		return {
 			isOpenSource: "",
 			canMessWithComputer: "",
@@ -112,5 +140,30 @@ class MainUI extends VBox{
 			madeByURL: "",
 			downloadURL: ""
 		};
+	}
+
+	function clearInfo() {
+		bannerBytes = null;
+		iconBytes = null;
+
+		banner.text = "Banner";
+		iconbtn.text = "Icon";
+
+		txtTitle.text = null;
+		txtDescription.text = null;
+		txtMadeBy.text = null;
+		githubUrl.text = null;
+		externalUrl.text = null;
+		madeUrl.text = null;
+		downloadUrl.text = null;
+
+		isOpenSourceSelect.listView.selectedIndex = 0;
+		messesWithPC.listView.selectedIndex = 0;
+
+		PreviewUI.instance.bannerPreview.resource = null;
+		PreviewUI.instance.iconPreview.resource = null;
+
+		PreviewUI.instance.bannerLabel.hide();
+		PreviewUI.instance.iconLabel.hide();
 	}
 }
