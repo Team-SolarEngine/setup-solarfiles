@@ -104,16 +104,15 @@ class MainUI extends VBox {
 				Dialogs.messageBox("Missing Download URL!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
-
 			var data:Dynamic = defaultData();
 			data.isOpenSource = options[isOpenSourceSelect.listView.selectedIndex];
 			data.canMessWithComputer = options[messesWithPC.listView.selectedIndex];
 			data.title = txtTitle.text;
 			data.description = txtDescription.text;
 			data.madeBy = txtMadeBy.text;
-			data.externalURL = externalUrl.text;
-			data.githubURL = githubUrl.text;
-			data.madeByURL = madeUrl.text;
+			data.externalURL = externalUrl.text ??= "";
+			data.githubURL = githubUrl.text ??= "";
+			data.madeByURL = madeUrl.text ??= "";
 			data.downloadURL = downloadUrl.text;
 
 			File.saveContent("./.solar-engine/config.json", Json.stringify(data));
