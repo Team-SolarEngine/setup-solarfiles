@@ -15,33 +15,6 @@ fn main() {
     let github_url = input("Input the Github URL", &false, "https://github.com/...");
     let made_by_url = input("Input the person/team who made the script/mod URL", &false, "https://...");
 
-    println!("/=/= Final results =\\=\\
--> Logo Path: {}
--> Banner Path: {}
--> Readme: Create this yourself later in a text editor!
--> Config:
-    -> Open Source: {}
-    -> Messes with computer: {}
-    -> Title: {}
-    -> Short Description: {}
-    -> Made By: {}
-    -> Download URL: {}
-    -> External URL: {}
-    -> Github URL: {}
-    -> Made By URL: {}",
-        path_to_logo,
-        path_to_banner,
-        is_open_source,
-        can_mess_with_computer,
-        title,
-        description,
-        made_by,
-        download_url,
-        external_url,
-        github_url,
-        made_by_url,
-    );
-
     let path_to_export = input("Where should we export it?", &true, "FULL PATH. ADD / AT THE END");
     let continue_question = boolean("Do you wish to continue?");
 

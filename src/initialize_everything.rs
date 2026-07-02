@@ -16,8 +16,7 @@ const CONTENT_JSON_CONFIG: &str = r#"{
     "externalURL": "{external_url}",
     "githubURL": "{github_url}",
     "madeByURL": "{made_by_url}",
-}
-"#;
+}"#;
 
 pub fn init_yes(
     path_to_logo: &str,
