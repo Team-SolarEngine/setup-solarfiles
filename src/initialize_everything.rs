@@ -42,7 +42,9 @@ pub fn init_yes(
         let path_exists_prompt = boolean(&format!("`{}` {}", path_to_export.bright_black(), "path exists. Do you wish to delete it?".yellow()));
 
         if path_exists_prompt == "yes" {
-            fs::remove_dir_all(extended_path).unwrap();
+            if let Err(e) = fs::remove_dir_all(extended_path) {
+                eprintln!("Failed to remove directory: {}", e);
+            }
         } else {
             print!("{}", "Exiting...".yellow());
             std::process::exit(0);
