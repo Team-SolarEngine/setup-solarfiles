@@ -16,8 +16,8 @@
         }
     </style>
 
-    <button text="Banner" id="banner" />
     <button text="Icon" id="iconbtn" />
+    <button text="Banner" id="banner" />
     <hbox>
         <grid>
             <label text="Title:" verticalAlign="center" />
@@ -49,6 +49,14 @@
                 <data>
                     <item text="Yes" />
                     <item text="No" />
+                </data>
+            </list-item-picker>
+
+            <label text="Type:"/>
+            <list-item-picker width="150" validator="required" id="submitType">
+                <data>
+                    <item text="Mod" />
+                    <item text="Script" />
                 </data>
             </list-item-picker>
         </grid>

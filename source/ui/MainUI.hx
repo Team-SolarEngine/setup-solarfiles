@@ -22,6 +22,7 @@ typedef Data = {
 	var githubURL:String;
 	var madeByURL:String;
 	var downloadURL:String;
+	var type:String;
 }
 
 @:build(haxe.ui.ComponentBuilder.build("assets/ui/mainview.xml"))
@@ -30,6 +31,7 @@ class MainUI extends VBox {
 	var iconBytes:Bytes = null;
 
 	var options:Array<String> = ["yes", "no"];
+	var typeOptions:Array<String> = ["Mods", "Scripts"];
 
 	public function new() {
 		super();
@@ -80,12 +82,12 @@ class MainUI extends VBox {
 		finish.onClick = function(event) {
 			FileSystem.createDirectory(".solar-engine");
 
-			if (bannerBytes == null) {
-				Dialogs.messageBox("Missing Banner file!", "ERROR", MessageBoxType.TYPE_ERROR);
-				return;
-			}
 			if (iconBytes == null) {
 				Dialogs.messageBox("Missing Icon file!", "ERROR", MessageBoxType.TYPE_ERROR);
+				return;
+			}
+			if (bannerBytes == null) {
+				Dialogs.messageBox("Missing Banner file!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
 			if (txtTitle.text == null || txtTitle.text == "") {
@@ -104,6 +106,7 @@ class MainUI extends VBox {
 				Dialogs.messageBox("Missing Download URL!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
+
 			var data:Dynamic = defaultData();
 			data.isOpenSource = options[isOpenSourceSelect.listView.selectedIndex];
 			data.canMessWithComputer = options[messesWithPC.listView.selectedIndex];
@@ -114,12 +117,13 @@ class MainUI extends VBox {
 			data.githubURL = githubUrl.text ??= "";
 			data.madeByURL = madeUrl.text ??= "";
 			data.downloadURL = downloadUrl.text;
+			data.type = typeOptions[submitType.listView.selectedIndex];
 
 			File.saveContent("./.solar-engine/config.json", Json.stringify(data));
 			File.saveContent("./.solar-engine/readme.md", "Has to be filled in.");
 
 			File.saveBytes("./.solar-engine/banner.png", bannerBytes);
-			File.saveBytes("./.solar-engine/icon.png", iconBytes);
+			File.saveBytes("./.solar-engine/logo.png", iconBytes);
 
 			Dialogs.messageBox("Info Saved!", "SUCCESS", MessageBoxType.TYPE_INFO);
 
@@ -137,7 +141,8 @@ class MainUI extends VBox {
 			externalURL: "",
 			githubURL: "",
 			madeByURL: "",
-			downloadURL: ""
+			downloadURL: "",
+			type: ""
 		};
 	}
 
@@ -148,16 +153,17 @@ class MainUI extends VBox {
 		banner.text = "Banner";
 		iconbtn.text = "Icon";
 
-		txtTitle.text = null;
-		txtDescription.text = null;
-		txtMadeBy.text = null;
-		githubUrl.text = null;
-		externalUrl.text = null;
-		madeUrl.text = null;
-		downloadUrl.text = null;
+		txtTitle.text = "";
+		txtDescription.text = "";
+		txtMadeBy.text = "";
+		githubUrl.text = "";
+		externalUrl.text = "";
+		madeUrl.text = "";
+		downloadUrl.text = "";
 
 		isOpenSourceSelect.listView.selectedIndex = 0;
 		messesWithPC.listView.selectedIndex = 0;
+		submitType.listView.selectedIndex = 0;
 
 		PreviewUI.instance.bannerPreview.resource = null;
 		PreviewUI.instance.iconPreview.resource = null;

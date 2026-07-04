@@ -6,16 +6,17 @@
     </style>
     <grid width="100%" height="100%">
         <vbox width="50%" height="100%">
-            <label text="Banner" id="bannerLabel" width="100%" horizontalAlign="center" style="text-align: center;" />
+            <label text="Icon" id="iconLabel" width="100%" horizontalAlign="center" style="text-align: center;" />
             <box width="100%" height="100%" style="padding: 5px;">
-                <image id="bannerPreview" width="100%" height="100%" scaleMode="fitinside"
+                <image id="iconPreview" width="100%" height="100%" scaleMode="fitinside"
                     imageVerticalAlign="center" imageHorizontalAlign="center" />
             </box>
         </vbox>
         <vbox width="50%" height="100%">
-            <label text="Icon" id="iconLabel" width="100%" horizontalAlign="center" style="text-align: center;" />
+            <label text="Banner" id="bannerLabel" width="100%" horizontalAlign="center"
+                style="text-align: center;" />
             <box width="100%" height="100%" style="padding: 5px;">
-                <image id="iconPreview" width="100%" height="100%" scaleMode="fitinside"
+                <image id="bannerPreview" width="100%" height="100%" scaleMode="fitinside"
                     imageVerticalAlign="center" imageHorizontalAlign="center" />
             </box>
         </vbox>
