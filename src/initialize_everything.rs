@@ -59,8 +59,11 @@ pub fn init_yes(
         .replace("{external_url}", external_url)
         .replace("{github_url}", github_url)
         .replace("{made_by_url}", made_by_url);
+ 
+    let formatted_readme = CONTENT_README
+        .replace("{title}",  title);
     
-    create_file(&format!("{}/readme.md", formatted_string), CONTENT_README);
+    create_file(&format!("{}/readme.md", formatted_string), &formatted_readme);
     create_file(&format!("{}/config.json", formatted_string), &populated_json);
 
     // === === === logo.png // banner.png === === ===
