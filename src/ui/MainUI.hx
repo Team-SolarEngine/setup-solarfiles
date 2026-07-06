@@ -25,7 +25,7 @@ typedef Data = {
 	var type:String;
 }
 
-@:build(haxe.ui.ComponentBuilder.build("assets/ui/mainview.xml"))
+@:build(haxe.ui.ComponentBuilder.build("assets/mainview.xml"))
 class MainUI extends VBox {
 	var bannerBytes:Bytes = null;
 	var iconBytes:Bytes = null;

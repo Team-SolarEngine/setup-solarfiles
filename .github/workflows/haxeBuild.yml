@@ -42,7 +42,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: windowsBuild
-                path: export/windows/bin
+                path: build/flixel/windows/bin
 
     buildLinux:
         runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: linuxBuild
-                path: export/linux/bin/
+                path: build/flixel/linux/bin/
 
     buildMac:
         runs-on: macos-latest
@@ -112,5 +112,5 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: macBuild
-                path: export/macos/bin/
+                path: build/flixel/macos/bin/
 
