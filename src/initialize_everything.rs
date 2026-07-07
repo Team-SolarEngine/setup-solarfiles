@@ -22,7 +22,7 @@ const CONTENT_JSON_CONFIG: &str = r#"{
 pub fn init_yes(
     path_to_logo: &str,
     path_to_banner: &str,
-    what_type: Vec<i32>,
+    what_type: &str,
     is_open_source: &str,
     can_mess_with_computer: &str,
     title: &str,
@@ -53,15 +53,6 @@ pub fn init_yes(
         fs::create_dir(extended_path).unwrap();
     }
 
-    let mut returned_type_shi: &str = "Other";
-    for num in what_type {
-        if num == 1 {
-            returned_type_shi = "Scripts";
-        } else if num == 2 {
-            returned_type_shi = "Mods";
-        }
-    }
-
     let populated_json = CONTENT_JSON_CONFIG
         .replace("{is_open_source}", is_open_source)
         .replace("{can_mess_with_computer}", can_mess_with_computer)
@@ -72,7 +63,7 @@ pub fn init_yes(
         .replace("{external_url}", external_url)
         .replace("{github_url}", github_url)
         .replace("{made_by_url}", made_by_url)
-        .replace("{type}", returned_type_shi);
+        .replace("{type}", what_type);
 
     let formatted_readme = CONTENT_README
         .replace("{title}",  title);

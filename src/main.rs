@@ -25,7 +25,7 @@ fn main() {
         initialize_everything::init_yes(
             &path_to_logo,
             &path_to_banner,
-            what_type,
+            &what_type,
             &is_open_source,
             &can_mess_with_computer,
             &title,
