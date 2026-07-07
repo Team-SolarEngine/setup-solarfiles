@@ -1,12 +1,13 @@
 mod initialize_everything;
 use dvs_interactive_cli_rs::boolean;
 use dvs_interactive_cli_rs::input;
-use dvs_interactive_cli_rs::choices;
+// use dvs_interactive_cli_rs::choices;
 
 fn main() {
     let path_to_logo = input("Path to mod/script logo", &true, "FULL PATH.");
     let path_to_banner = input("Path to mod/script banner", &true, "FULL PATH.");
-    let what_type = choices("What type is it?", &["Scripts", "Mod"].as_slice(), &false, &true);
+    // let what_type = choices("What type is it?", &["Scripts", "Mod"].as_slice(), &false, &true);
+    let what_type = input("What type is it?", &true, "Script, Mod, Improvement, anything!");
     let is_open_source = boolean("Is it open source?");
     let can_mess_with_computer = boolean("Can it mess with your computer?");
     let title = input("Input the title of your mod/script", &true, "Your epic cool mod");
