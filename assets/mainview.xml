@@ -1,9 +1,5 @@
 <vbox style="padding: 5px;">
     <style>
-        body{
-            font-size: 12px;
-        }
-
         .button, .textfield, .textarea, .label{
             margin-top: 5px;
             margin-bottom: 5px;
@@ -13,6 +9,15 @@
 
         .textfield{
             width: 200;
+        }
+
+        .checkbox{
+            font-size: 12px;
+
+            padding: 5px;
+
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
     </style>
 
@@ -28,13 +33,13 @@
             <label text="Made by:" verticalAlign="center" />
             <textfield placeholder="Some dev" id="txtMadeBy" validator="required" />
             <label text="Github URL:" />
-            <textfield placeholder="https://github.com/SomeUser/repo" id="githubUrl"/>
+            <textfield placeholder="https://github.com/SomeUser/repo" id="githubUrl" />
             <label text="External URL:" />
-            <textfield placeholder="https://website.dev" id="externalUrl"/>
+            <textfield placeholder="https://website.dev" id="externalUrl" />
             <label text="Madeby URL:" />
-            <textfield placeholder="https://dev.dev" id="madeUrl"/>
+            <textfield placeholder="https://dev.dev" id="madeUrl" />
             <label text="Download URL:" />
-            <textfield placeholder="https://download.url" id="downloadUrl" validator="required"/>
+            <textfield placeholder="https://download.url" id="downloadUrl" validator="required" />
 
             <label text="Is opensource:" />
             <list-item-picker width="150" validator="required" id="isOpenSourceSelect">
@@ -44,25 +49,23 @@
                 </data>
             </list-item-picker>
 
-            <label text="Messes with computer:"/>
+            <label text="Messes with computer:" />
             <list-item-picker width="150" validator="required" id="messesWithPC">
                 <data>
                     <item text="Yes" />
                     <item text="No" />
                 </data>
             </list-item-picker>
-
-            <label text="Type:"/>
-            <list-item-picker width="150" validator="required" id="submitType">
-                <data>
-                    <item text="Mod" />
-                    <item text="Script" />
-                </data>
-            </list-item-picker>
         </grid>
     </hbox>
     <hbox>
-        <button text="Save" id="finish"/>
-        <button text="Clear" id="clearbtn"/>
+        <label text="Type:" />
+        <textfield placeholder="Mod" id="submitType" validator="required" />
+        <button id="openPredefine" text="Predefined Types" />
+    </hbox>
+    <checkbox text="Has Changelog?" id="genChangelog" selected="false" />
+    <hbox>
+        <button text="Save" id="finish" />
+        <button text="Clear" id="clearbtn" />
     </hbox>
 </vbox>

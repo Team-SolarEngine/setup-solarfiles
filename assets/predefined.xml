@@ -1,0 +1,12 @@
+<dialog title="Predefined" width="300" height="150" style="font-size: 12px;">
+    <grid>
+        <list-item-picker width="150" id="submitDefine">
+            <data>
+                <item text="Mod" />
+                <item text="Script" />
+                <item text="Improvement" />
+                <item text="Other" />
+            </data>
+        </list-item-picker>
+    </grid>
+</dialog>

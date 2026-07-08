@@ -27,11 +27,12 @@ typedef Data = {
 
 @:build(haxe.ui.ComponentBuilder.build("assets/mainview.xml"))
 class MainUI extends VBox {
+	var solarPath = "./.solar-engine/";
+
 	var bannerBytes:Bytes = null;
 	var iconBytes:Bytes = null;
 
 	var options:Array<String> = ["yes", "no"];
-	var typeOptions:Array<String> = ["Mods", "Scripts"];
 
 	public function new() {
 		super();
@@ -73,8 +74,18 @@ class MainUI extends VBox {
 			});
 		}
 
-		clearbtn.onClick = function(event){
-			Dialogs.messageBox("Are you sure?", "QUESTION", MessageBoxType.TYPE_YESNO, function(callback){
+		openPredefine.onClick = function(event) {
+			var dialog:PredefinedDialog = new PredefinedDialog();
+			dialog.showDialog();
+			dialog.onDialogClosed = function(e) {
+				if (e.button == DialogButton.APPLY) {
+					submitType.text = dialog.typeOptions[dialog.submitDefine.listView.selectedIndex];
+				}
+			}
+		}
+
+		clearbtn.onClick = function(event) {
+			Dialogs.messageBox("Are you sure?", "QUESTION", MessageBoxType.TYPE_YESNO, function(callback) {
 				(callback == DialogButton.YES) ? clearInfo() : return;
 			});
 		}
@@ -106,6 +117,10 @@ class MainUI extends VBox {
 				Dialogs.messageBox("Missing Download URL!", "ERROR", MessageBoxType.TYPE_ERROR);
 				return;
 			}
+			if (submitType.text == null || submitType.text == "") {
+				Dialogs.messageBox("Missing Submit Type!", "ERROR", MessageBoxType.TYPE_ERROR);
+				return;
+			}
 
 			var data:Dynamic = defaultData();
 			data.isOpenSource = options[isOpenSourceSelect.listView.selectedIndex];
@@ -117,13 +132,16 @@ class MainUI extends VBox {
 			data.githubURL = githubUrl.text ??= "";
 			data.madeByURL = madeUrl.text ??= "";
 			data.downloadURL = downloadUrl.text;
-			data.type = typeOptions[submitType.listView.selectedIndex];
+			data.type = submitType.text;
 
-			File.saveContent("./.solar-engine/config.json", Json.stringify(data));
-			File.saveContent("./.solar-engine/readme.md", "Has to be filled in.");
+			File.saveContent(solarPath + "config.json", Json.stringify(data));
+			File.saveContent(solarPath + "readme.md", "Has to be filled in.");
 
-			File.saveBytes("./.solar-engine/banner.png", bannerBytes);
-			File.saveBytes("./.solar-engine/logo.png", iconBytes);
+			if (genChangelog.selected)
+				File.saveContent(solarPath + "changelog.md", "Has to be filled in.");
+
+			File.saveBytes(solarPath + "banner.png", bannerBytes);
+			File.saveBytes(solarPath + "logo.png", iconBytes);
 
 			Dialogs.messageBox("Info Saved!", "SUCCESS", MessageBoxType.TYPE_INFO);
 
@@ -147,6 +165,8 @@ class MainUI extends VBox {
 	}
 
 	function clearInfo() {
+		genChangelog.selected = false;
+
 		bannerBytes = null;
 		iconBytes = null;
 
@@ -160,10 +180,10 @@ class MainUI extends VBox {
 		externalUrl.text = "";
 		madeUrl.text = "";
 		downloadUrl.text = "";
+		submitType.text = "";
 
 		isOpenSourceSelect.listView.selectedIndex = 0;
 		messesWithPC.listView.selectedIndex = 0;
-		submitType.listView.selectedIndex = 0;
 
 		PreviewUI.instance.bannerPreview.resource = null;
 		PreviewUI.instance.iconPreview.resource = null;
